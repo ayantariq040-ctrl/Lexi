@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-<head><script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
+<head><script>(function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('jv_perf')}catch(e){}
+window.LITE_AUTO=false;window.LITE=s==='low';d.classList.toggle('lite',window.LITE)})()</script>
+<script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#050203">
@@ -134,6 +136,15 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;
 .av:after,.brand .orb:after{content:"";position:absolute;top:-5px;right:-5px;bottom:-5px;left:-5px;inset:-5px;border-radius:50%;border:1px dashed rgba(255,70,80,.7);animation:spin 10s linear infinite;pointer-events:none}
 .busy #msgs .msg:last-of-type .av:after{animation-duration:1.3s;border:2px solid transparent;border-top-color:#ff3b4a;border-bottom-color:#ff3b4a}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* LITE / performance mode */
+.lite *,.lite *:before,.lite *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important;will-change:auto!important;text-shadow:none!important}
+.lite *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.lite .orb,.lite .av,.lite .send,.lite .newc,.lite .box,.lite .box2,.lite .card,.lite .dn,.lite .pop{box-shadow:none!important}
+.lite .av:after,.lite .brand .orb:after{display:none!important}
+.lite .modal{background:rgba(0,0,0,.78)}
+.lite .dots i{animation-name:b!important;animation-duration:1.2s!important;animation-iteration-count:infinite!important}
+@media(prefers-reduced-motion:reduce){.hero,#hero{will-change:auto}}
+#appr{display:block}#appr small{display:block;margin-top:4px;color:var(--mu)}
 </style>
 <script src="https://js.puter.com/v2/"></script>
 </head>
@@ -189,6 +200,8 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;
 <label for="model">Model</label><div class="row"><input class="fld" id="model" list="ml" autocomplete="off"><button class="btn" type="button" id="lm">Models load karo</button></div><datalist id="ml"></datalist><select class="fld" id="msel" hidden></select>
 <label class="chk"><input type="checkbox" id="rem" checked> Is device par key yaad rakho</label><small>Key sirf tumhare browser se seedha provider ko jati hai.</small>
 </details>
+<div id="appr"><label for="thm">Theme (Night / Light)</label><select class="fld" id="thm"><option value="dark">🌙 Night mode</option><option value="light">☀ Light mode</option></select>
+<label for="perf">Performance</label><select class="fld" id="perf"><option value="low">Low-end: animations band, kam RAM</option><option value="high">High-end: sab animations on</option></select></div>
 <details><summary>Zyada options: mode, mere baare mein, lambai</summary><label for="lang">Lexi ki zabaan aur mic ki zabaan</label><select class="fld" id="lang"><option value="auto">Auto (jo zabaan tum likho)</option><option value="roman">Roman Urdu</option><option value="ur">اردو</option><option value="en">English</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="fa">فارسی</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="zh">中文</option></select><label for="voice">Lexi ki awaz (accent)</label><select class="fld" id="voice"></select><button class="btn" type="button" id="vtest">🔊 Awaz test karo</button>
 <label for="mode">Lexi ka mode</label><select class="fld" id="mode"><option value="general">General (sab kuch)</option><option value="coder">Coder</option><option value="teacher">Teacher</option><option value="writer">Writer</option><option value="business">Freelancing / Business</option><option value="tutor">Coding Teacher</option><option value="debug">Debugger</option><option value="reviewer">Code Reviewer</option><option value="architect">Architect</option><option value="linguist">Language Teacher</option><option value="translator">Translator</option></select>
 <label for="me">Mere baare mein (Lexi har chat mein yaad rakhegi)</label><textarea class="fld" id="me" rows="7" placeholder="Apna kaam, skills, projects, goals aur Lexi se kaise baat karni hai — yahan likho."></textarea>
@@ -454,7 +467,7 @@ for(let i=0;i<120;i++)EM.push({a:rnd()*6.283,p:rnd(),s:.5+rnd()});
 const OR=[[1.28,.5,.2,.14],[1.12,1.1,-.4,-.1],[1.45,.2,.9,.07],[1.2,.9,.5,.2],[1.38,1.3,-.8,-.12],[1.5,.7,.1,.05]],SP=[];
 for(let i=0;i<72;i++)SP.push({a:i/72*6.283+rnd()*.05,l:1.18+rnd()*.32,d:rnd()<.5,p:rnd()});
 let vis=true;try{new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(c)}catch(e){}
-(function f(){requestAnimationFrame(f);if(document.hidden||!vis)return;t+=.012;const W=S*D,cx=W/2,R=W*.31,B=[[],[],[],[],[],[]],yw=t*.22,pt=.45+.12*Math.sin(t*.31),cy=Math.cos(yw),sy=Math.sin(yw),cp=Math.cos(pt),sp=Math.sin(pt);g.clearRect(0,0,W,W);g.globalCompositeOperation='lighter';
+(function f(){requestAnimationFrame(f);if(document.hidden||!vis||window.LITE)return;t+=.012;const W=S*D,cx=W/2,R=W*.31,B=[[],[],[],[],[],[]],yw=t*.22,pt=.45+.12*Math.sin(t*.31),cy=Math.cos(yw),sy=Math.sin(yw),cp=Math.cos(pt),sp=Math.sin(pt);g.clearRect(0,0,W,W);g.globalCompositeOperation='lighter';
 let gr=g.createRadialGradient(cx,cx,R*.75,cx,cx,R*1.45);gr.addColorStop(0,'rgba(100,0,30,.1)');gr.addColorStop(.35,'rgba(230,20,70,.3)');gr.addColorStop(1,'rgba(120,0,30,0)');g.fillStyle=gr;g.fillRect(0,0,W,W);
 g.strokeStyle='rgba(255,70,120,.3)';g.lineWidth=D*1.5;g.beginPath();g.arc(cx,cx,R,0,6.283);g.stroke();g.strokeStyle='rgba(255,40,90,.1)';g.lineWidth=D*6;g.stroke();
 g.save();g.translate(cx,cx);g.rotate(t*.05);g.lineWidth=D*.7;SP.forEach(q=>{const r0=R*1.08,r1=R*q.l,ca=Math.cos(q.a),sa=Math.sin(q.a);g.strokeStyle='rgba(255,60,70,'+(.1+.18*q.p).toFixed(2)+')';g.beginPath();g.moveTo(ca*r0,sa*r0);g.lineTo(ca*r1,sa*r1);g.stroke();if(q.d){g.fillStyle='rgba(255,140,140,.85)';for(let k=0;k<4;k++){const rr=r0+(r1-r0)*(.15+.2*k+((t*.5+q.p)%.2)*.5);g.fillRect(ca*rr-D,sa*rr-D,D*2,D*2)}}});g.restore();
@@ -483,7 +496,7 @@ const OR=[],TR=[],SP=[];
 for(let i=0;i<8;i++){const b=basis();OR.push({u:b.u,v:b.v,r:1.12+i*.075+rnd()*.04,w:(rnd()<.5?-1:1)*(.15+rnd()*.35),a0:rnd()*6.283,arc:.8+rnd()*1.2,sats:[rnd()*6.283,rnd()*6.283]})}
 [[1.04,'rgba(255,85,105,.6)',.09],[1.34,'rgba(255,60,90,.5)',-.07],[1.62,'rgba(255,130,150,.45)',.05]].forEach(([r,col,w])=>{const b=basis(),tk=[];for(let i=0;i<190;i++)tk.push([rnd()*6.283,.015+Math.pow(rnd(),2)*.06]);TR.push({u:b.u,v:b.v,r,col,w,t:tk})});
 for(let i=0;i<56;i++){const rs=[];let r=1.08+rnd()*.12;const n=4+(rnd()*6|0);for(let k=0;k<n;k++){rs.push(r);r+=.06+rnd()*.07}SP.push({d:unit(),r:rs,e:rs[rs.length-1]})}
-(function f(){requestAnimationFrame(f);if(document.hidden||!vis)return;t+=.01;const W=H*D,cx=W/2,Rs=S*.38*D,yw=t*.12,pt=.95+.12*Math.sin(t*.23),cy=Math.cos(yw),sy=Math.sin(yw),cp=Math.cos(pt),sp=Math.sin(pt);
+(function f(){requestAnimationFrame(f);if(document.hidden||!vis||window.LITE)return;t+=.01;const W=H*D,cx=W/2,Rs=S*.38*D,yw=t*.12,pt=.95+.12*Math.sin(t*.23),cy=Math.cos(yw),sy=Math.sin(yw),cp=Math.cos(pt),sp=Math.sin(pt);
 const R=v=>{const x1=v[0]*cy-v[2]*sy,z1=v[0]*sy+v[2]*cy;return[x1,v[1]*cp-z1*sp,v[1]*sp+z1*cp]};g.clearRect(0,0,W,W);g.globalCompositeOperation='lighter';
 g.strokeStyle='rgba(255,60,80,.07)';g.lineWidth=D;g.beginPath();SP.forEach(s=>{const d=R(s.d);g.moveTo(cx+d[0]*Rs,cx+d[1]*Rs);g.lineTo(cx+d[0]*s.e*Rs,cx+d[1]*s.e*Rs)});g.stroke();
 g.fillStyle='rgba(255,100,120,1)';SP.forEach(s=>{const d=R(s.d);g.globalAlpha=d[2]>0?.6:.28;s.r.forEach(r=>g.fillRect(cx+d[0]*r*Rs,cx+d[1]*r*Rs,D*1.4,D*1.4))});g.globalAlpha=1;
@@ -505,7 +518,7 @@ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){
 addEventListener('offline',()=>toast('Internet band hai'));addEventListener('online',()=>toast('Internet wapas aa gaya'));
 const openSide=()=>{$('side').classList.add('open');$('shade').classList.add('show')},closeSide=()=>{$('side').classList.remove('open');$('shade').classList.remove('show')};
 $('menu').onclick=openSide;$('shade').onclick=closeSide;$('new').onclick=()=>{if(!S.busy)newChat()};$('q').oninput=side;
-function openSet(){$('key').value='';$('key').placeholder=key()?'Key saved ✓ (naya paste karke badal sakte ho)':'API key paste karo';$('prov').value=PROV();$('base').value=L.get('ja_base')||SRV()||'https://api.groq.com/openai/v1';provUI();$('tok').value=L.get('ja_tok2')||'0';$('temp').value=L.get('ja_temp')||'0.7';$('mode').value=L.get('ja_mode')||'general';$('lang').value=L.get('ja_lang')||'auto';fillVoices();$('me').value=L.get('ja_me')||'';$('web').checked=L.get('ja_web')==='1';$('modal').classList.add('show');closeSide();serverUI()}
+function openSet(){$('key').value='';$('key').placeholder=key()?'Key saved ✓ (naya paste karke badal sakte ho)':'API key paste karo';$('prov').value=PROV();$('base').value=L.get('ja_base')||SRV()||'https://api.groq.com/openai/v1';provUI();$('tok').value=L.get('ja_tok2')||'0';$('temp').value=L.get('ja_temp')||'0.7';$('mode').value=L.get('ja_mode')||'general';$('lang').value=L.get('ja_lang')||'auto';fillVoices();$('me').value=L.get('ja_me')||'';$('web').checked=L.get('ja_web')==='1';$('thm').value=L.get('ja_theme')||'dark';applyPerf();$('modal').classList.add('show');closeSide();serverUI()}
 $('openSet').onclick=openSet;$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};
 $('sv').onclick=()=>{const p=$('prov').value,kn='ja_key_'+p,k=$('key').value.trim(),old=Ss.get(kn)||L.get(kn)||'';L.put('ja_prov',p);L.put('ja_base',$('base').value.trim());
 if(k){Ss.put(kn,k);$('rem').checked?L.put(kn,k):L.del(kn)}else if(!$('rem').checked)L.del(kn);else if(old)L.put(kn,old);
@@ -515,7 +528,9 @@ $('lm').onclick=async()=>{if($('prov').value==='puter'){try{if(!window.puter)thr
 try{const u=p==='claude'?'https://api.anthropic.com/v1/models?limit=100':($('base').value.trim()||base()).replace(/\/+$/,'')+'/models',h=p==='claude'?{'x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{Authorization:'Bearer '+k};
 const r=await fetch(u,{headers:h}),d=await r.json();if(!r.ok)throw Error((d.error&&(d.error.message||JSON.stringify(d.error)))||'fail');const n=(d.data||[]).map(x=>x.id).filter(x=>x&&!NC.test(x));if(p!=='claude')n.sort((a,b)=>rank(a)-rank(b));if(!n.length)throw Error('Koi chat model nahi mila');$('ml').innerHTML=n.map(x=>'<option value="'+esc(x)+'">').join('');
 const ms=$('msel');ms.innerHTML=n.map(x=>'<option>'+esc(x)+'</option>').join('');if(!n.includes($('model').value.trim()))$('model').value=n[0];ms.value=$('model').value;ms.hidden=false;toast(n.length+' models mile — list se chuno, phir Save dabao')}catch(e){toast('Models load nahi hue: '+e.message)}$('lm').textContent='Models load karo'};
-function theme(t){document.documentElement.dataset.theme=t;$('theme').textContent=t==='dark'?'☾':'☀';document.querySelector('meta[name=theme-color]').content=t==='dark'?'#050203':'#fff4f4';L.put('ja_theme',t)}
+function theme(t){const m=t==='light'?'light':'dark';t=m;document.documentElement.dataset.theme=m;$('theme').textContent=m==='dark'?'☾':'☀';document.querySelector('meta[name=theme-color]').content=m==='dark'?'#050203':'#fff4f4';L.put('ja_theme',t);$('thm').value=t}
+function applyPerf(p){if(p)L.put('jv_perf',p);const s=L.get('jv_perf')==='low'?'low':'high';window.LITE=s==='low';document.documentElement.classList.toggle('lite',window.LITE);$('perf').value=s}
+window.applyPerf=applyPerf;$('thm').onchange=()=>theme($('thm').value);$('perf').onchange=()=>applyPerf($('perf').value);applyPerf();
 $('theme').onclick=()=>theme(document.documentElement.dataset.theme==='dark'?'light':'dark');
 theme(L.get('ja_theme')||'dark');
 try{S.chats=JSON.parse(L.get('ja_chats')||'[]')}catch(e){S.chats=[]}
