@@ -2,7 +2,16 @@
 <html lang="en" data-theme="dark">
 <head><script>(function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('jv_perf')}catch(e){}
 window.LITE_AUTO=false;window.LITE=s==='low';d.classList.toggle('lite',window.LITE)})()</script>
-<script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
+<script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><script>(function(){
+if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){})});
+var K="app_ver:"+location.pathname,busy=false;
+function h(s){var x=5381,i=s.length;while(i)x=(x*33)^s.charCodeAt(--i);return String(x>>>0)}
+function chk(){if(busy||!navigator.onLine)return;busy=true;
+fetch(location.origin+location.pathname+"?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){busy=false;if(!t)return;var v=h(t),o=null;try{o=localStorage.getItem(K)}catch(e){}
+try{localStorage.setItem(K,v)}catch(e){}
+if(o&&o!==v)location.reload()}).catch(function(){busy=false})}
+addEventListener("load",chk);document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()});
+})()</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#050203">
