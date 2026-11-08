@@ -3,17 +3,24 @@
 <head><script>(function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('jv_perf')}catch(e){}
 window.LITE_AUTO=false;window.LITE=s==='low';d.classList.toggle('lite',window.LITE)})()</script>
 <script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><script>(function(){
+var d=document.documentElement,K="app_ver:"+location.pathname,busy=false;
+try{var F=localStorage.getItem('ja_fs');if(F)d.style.setProperty('--z',F)}catch(e){}
+var ACC={red:['255,31,45','#ff1f2d','#ff3b4a','linear-gradient(135deg,#a80018,#e0102a 50%,#ff3b3b)','#2a0508','#ffdede',0],blue:['45,123,255','#2d7bff','#4aa3ff','linear-gradient(135deg,#0a3fa8,#1f6fe0 50%,#4aa3ff)','#06172e','#dbe9ff',-140],green:['30,200,110','#1ec86e','#3be08a','linear-gradient(135deg,#0a7a40,#16b05f 50%,#3be08a)','#05210f','#d9f7e5',-212],purple:['150,80,255','#9650ff','#b07dff','linear-gradient(135deg,#5a1fb8,#8a4af0 50%,#b07dff)','#160a2e','#ebe0ff',-82],orange:['255,140,30','#ff8c1e','#ffa84d','linear-gradient(135deg,#b84d00,#f07010 50%,#ffa84d)','#2a1405','#ffe8d0',-329],pink:['255,70,150','#ff4696','#ff6fb0','linear-gradient(135deg,#b00d5a,#e02a80 50%,#ff6fb0)','#2a0618','#ffdeee',-27]};
+window.setAcc=function(n){var a=ACC[n]||ACC.red,s=document.getElementById('accst');if(!s){s=document.createElement('style');s.id='accst';document.head.appendChild(s)}
+s.textContent='html:root{--acrgb:'+a[0]+';--ac:'+a[1]+';--ac2:'+a[2]+';--grad:'+a[3]+';--hue:'+a[6]+'deg}html:root[data-theme=dark]{--line:rgba('+a[0]+',.2);--user:'+a[4]+'}html:root[data-theme=light]{--line:rgba('+a[0]+',.25);--user:'+a[5]+'}'};
+try{window.setAcc(localStorage.getItem('ja_acc')||'red')}catch(e){}
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();window._dp=e;window.onDP&&window.onDP()});
 if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){})});
-var K="app_ver:"+location.pathname,busy=false;
 function h(s){var x=5381,i=s.length;while(i)x=(x*33)^s.charCodeAt(--i);return String(x>>>0)}
-function chk(){if(busy||!navigator.onLine)return;busy=true;
+window.showUpd=function(){var b=document.getElementById('upd');if(b)b.classList.add('show')};
+function chk(first){if(busy||!navigator.onLine)return;busy=true;
 fetch(location.origin+location.pathname+"?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){busy=false;if(!t)return;var v=h(t),o=null;try{o=localStorage.getItem(K)}catch(e){}
 try{localStorage.setItem(K,v)}catch(e){}
-if(o&&o!==v)location.reload()}).catch(function(){busy=false})}
-addEventListener("load",chk);document.addEventListener("visibilitychange",function(){if(!document.hidden)chk()});
+if(o&&o!==v){if(first)location.reload();else window.showUpd()}}).catch(function(){busy=false})}
+addEventListener("load",function(){chk(true)});document.addEventListener("visibilitychange",function(){if(!document.hidden)chk(false)});
 })()</script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#050203">
 <script>/* LEXI SETTINGS: public karne par worker ka link yahan ' ' ke andar likho, jaise window.LEXI_SERVER='https://lexi.naam.workers.dev'; */window.LEXI_SERVER='https://lexi.ayantariq040.workers.dev';</script>
 <script>
@@ -26,18 +33,18 @@ window.addEventListener('error',function(e){try{if(document.getElementById('fata
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
 <style>
-:root{--bg:#050203;--glass:rgba(14,4,6,.86);--p2:#14070a;--line:rgba(255,40,50,.2);--tx:#f6e9ea;--mu:#a67b80;--ac:#ff1f2d;--user:#2a0508;--code:#0a0304;--grad:linear-gradient(135deg,#a80018,#e0102a 50%,#ff3b3b)}
+:root{--acrgb:255,31,45;--ac2:#ff3b4a;--bg:#050203;--glass:rgba(14,4,6,.86);--p2:#14070a;--line:rgba(255,40,50,.2);--tx:#f6e9ea;--mu:#a67b80;--ac:#ff1f2d;--user:#2a0508;--code:#0a0304;--grad:linear-gradient(135deg,#a80018,#e0102a 50%,#ff3b3b)}
 [data-theme=light]{--bg:#fff4f4;--glass:rgba(255,255,255,.9);--p2:#fff;--line:rgba(150,0,20,.2);--tx:#2a0508;--mu:#8a4a50;--user:#ffdede;--code:#fdeaea}
 *{box-sizing:border-box;margin:0}html,body{height:100%}
 body{background:var(--bg);color:var(--tx);font:15px/1.65 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
-body:before{content:"";position:fixed;top:0;right:0;bottom:0;left:0;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800' preserveAspectRatio='xMidYMid slice'%3E%3Cg fill='none' stroke='rgb%28255%2C40%2C50%29' stroke-opacity='.13' stroke-width='1'%3E%3Cellipse cx='200' cy='330' rx='190' ry='70' transform='rotate%28-25 200 330%29'/%3E%3Cellipse cx='200' cy='330' rx='170' ry='95' transform='rotate%2835 200 330%29'/%3E%3Ccircle cx='200' cy='330' r='150' stroke-dasharray='2 8'/%3E%3Ccircle cx='200' cy='330' r='215' stroke-dasharray='40 14 6 14'/%3E%3Ccircle cx='200' cy='330' r='260'/%3E%3Cpath d='M200 330L200 40M200 330L460 180M200 330L-60 180M200 330L460 480M200 330L-60 480M200 330L200 620' stroke-dasharray='3 9'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat,radial-gradient(60% 45% at 85% -10%,rgba(255,31,45,.2),transparent),radial-gradient(45% 40% at 0 100%,rgba(160,0,20,.13),transparent)}
+body:before{content:"";position:fixed;top:0;right:0;bottom:0;left:0;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800' preserveAspectRatio='xMidYMid slice'%3E%3Cg fill='none' stroke='rgb%28255%2C40%2C50%29' stroke-opacity='.13' stroke-width='1'%3E%3Cellipse cx='200' cy='330' rx='190' ry='70' transform='rotate%28-25 200 330%29'/%3E%3Cellipse cx='200' cy='330' rx='170' ry='95' transform='rotate%2835 200 330%29'/%3E%3Ccircle cx='200' cy='330' r='150' stroke-dasharray='2 8'/%3E%3Ccircle cx='200' cy='330' r='215' stroke-dasharray='40 14 6 14'/%3E%3Ccircle cx='200' cy='330' r='260'/%3E%3Cpath d='M200 330L200 40M200 330L460 180M200 330L-60 180M200 330L460 480M200 330L-60 480M200 330L200 620' stroke-dasharray='3 9'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat,radial-gradient(60% 45% at 85% -10%,rgba(var(--acrgb),.2),transparent),radial-gradient(45% 40% at 0 100%,rgba(160,0,20,.13),transparent)}
 button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
 .app{position:relative;display:flex;height:100vh;height:100dvh}
 aside{width:290px;flex:none;display:flex;flex-direction:column;gap:12px;padding:14px;padding-top:max(14px,env(safe-area-inset-top));background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-right:1px solid var(--line);z-index:30;transition:transform .28s}
 .brand{display:flex;align-items:center;gap:10px;font-size:18px;padding:4px 4px 2px}
-.orb{width:30px;height:30px;border-radius:50%;background:var(--grad);box-shadow:0 0 22px rgba(255,31,45,.55);flex:none}
+.orb{width:30px;height:30px;border-radius:50%;background:var(--grad);box-shadow:0 0 22px rgba(var(--acrgb),.55);flex:none}
 .tag{font-size:10px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:99px;background:var(--grad);color:#fff}
-.newc{padding:11px;border-radius:13px;background:var(--grad);color:#fff;font-weight:600;box-shadow:0 8px 24px rgba(255,31,45,.3)}
+.newc{padding:11px;border-radius:13px;background:var(--grad);color:#fff;font-weight:600;box-shadow:0 8px 24px rgba(var(--acrgb),.3)}
 .search,.fld{width:100%;padding:10px 13px;border-radius:12px;background:var(--p2);border:1px solid var(--line);outline:0}
 .search:focus,.fld:focus{border-color:var(--ac)}
 .list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:3px;min-height:0}
@@ -81,7 +88,7 @@ h1{font-size:28px;line-height:1.25;background:var(--grad);-webkit-background-cli
 @keyframes b{0%,60%,100%{opacity:.25;transform:none}30%{opacity:1;transform:translateY(-4px)}}
 .cw{padding:6px 14px max(12px,env(safe-area-inset-bottom))}
 .box{max-width:780px;margin:0 auto;display:flex;align-items:flex-end;gap:4px;padding:7px;border-radius:24px;background:var(--p2);border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.25);transition:.2s}
-.box:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px rgba(255,31,45,.18),0 10px 40px rgba(0,0,0,.25)}
+.box:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px rgba(var(--acrgb),.18),0 10px 40px rgba(0,0,0,.25)}
 #p{flex:1;min-width:0;border:0;background:none;outline:0;resize:none;max-height:170px;padding:8px 8px;line-height:1.5}
 .send{width:40px;height:40px;border-radius:50%;background:var(--grad);color:#fff;font-size:18px;flex:none}.send.stop{background:#f87171}
 .note{text-align:center;color:var(--mu);font-size:11px;margin-top:7px}
@@ -105,7 +112,7 @@ h1{font-size:28px;line-height:1.25;background:var(--grad);-webkit-background-cli
 .mc>*{flex-shrink:0}.mc textarea.fld{min-height:150px;resize:vertical}.row.sticky{position:sticky;bottom:-20px;padding:12px 0;margin-top:10px;background:var(--bg);z-index:2;border-top:1px solid var(--line)}.chip{max-width:40vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ttl{min-width:56px}.eff button{padding:5px 8px;font-size:11.5px}#mode2{padding:6px 8px;font-size:11.5px}
 .cb{display:flex;gap:2px}.out{border-top:1px solid var(--line);padding:10px 14px;font:13px ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;max-height:320px;overflow:auto}.out iframe{display:block;width:100%;height:280px;border:0;background:#fff;border-radius:8px}
 .box2{max-width:780px;margin:0 auto;background:var(--p2);border:1px solid var(--line);border-radius:26px;padding:12px 12px 10px;box-shadow:0 10px 40px rgba(0,0,0,.25);transition:.2s}
-.box2:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px rgba(255,31,45,.18),0 10px 40px rgba(0,0,0,.25)}
+.box2:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px rgba(var(--acrgb),.18),0 10px 40px rgba(0,0,0,.25)}
 .box2 #p{display:block;width:100%;padding:4px 6px 12px;font-size:16px}
 .bar{display:flex;align-items:center;gap:8px}.sp{flex:1}
 .rb{width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;flex:none}
@@ -116,16 +123,16 @@ h1{font-size:28px;line-height:1.25;background:var(--grad);-webkit-background-cli
 .ph{font-size:11px;letter-spacing:.06em;color:var(--mu);padding:10px 12px 4px;text-transform:uppercase}
 .dn{bottom:170px}
 #orb{display:block;margin:0 auto 6px;max-width:100%}
-.sys{font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ff3b3b;margin-bottom:12px;text-shadow:0 0 12px rgba(255,31,45,.7)}
-h1{font-size:24px;letter-spacing:.07em;text-transform:uppercase;filter:drop-shadow(0 0 14px rgba(255,31,45,.5))}
+.sys{font:600 11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:var(--ac2);margin-bottom:12px;text-shadow:0 0 12px rgba(var(--acrgb),.7)}
+h1{font-size:24px;letter-spacing:.07em;text-transform:uppercase;filter:drop-shadow(0 0 14px rgba(var(--acrgb),.5))}
 .brand b{letter-spacing:.2em;text-transform:uppercase}.ttl{letter-spacing:.05em}
 .chip,.pill,.ph{font-family:ui-monospace,Menlo,Consolas,monospace}
 .card{position:relative;border-radius:8px}
 .card:before,.card:after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--ac);pointer-events:none}
 .card:before{top:-1px;left:-1px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}.card:after{right:-1px;bottom:-1px;border-left:0;border-top:0;border-radius:0 0 8px 0}
-.card:hover{box-shadow:0 0 22px rgba(255,31,45,.28)}
-.box2{border-radius:20px}.box2:focus-within{box-shadow:0 0 0 1px var(--ac),0 0 26px rgba(255,31,45,.35)}
-.send{box-shadow:0 0 18px rgba(255,31,45,.55)}.av{box-shadow:0 0 14px rgba(255,31,45,.6)}.orb{box-shadow:0 0 22px rgba(255,31,45,.7)}
+.card:hover{box-shadow:0 0 22px rgba(var(--acrgb),.28)}
+.box2{border-radius:20px}.box2:focus-within{box-shadow:0 0 0 1px var(--ac),0 0 26px rgba(var(--acrgb),.35)}
+.send{box-shadow:0 0 18px rgba(var(--acrgb),.55)}.av{box-shadow:0 0 14px rgba(var(--acrgb),.6)}.orb{box-shadow:0 0 22px rgba(var(--acrgb),.7)}
 
 #orb{display:block;margin:0 auto;max-width:100%}
 header,.scroll,.cw{position:relative;z-index:1}
@@ -143,7 +150,7 @@ h1{font-size:21px;letter-spacing:.05em}
 header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:repeating-linear-gradient(90deg,rgba(255,60,70,.55) 0 1px,transparent 1px 8px);opacity:.35;pointer-events:none}
 .av,.brand .orb{position:relative}
 .av:after,.brand .orb:after{content:"";position:absolute;top:-5px;right:-5px;bottom:-5px;left:-5px;inset:-5px;border-radius:50%;border:1px dashed rgba(255,70,80,.7);animation:spin 10s linear infinite;pointer-events:none}
-.busy #msgs .msg:last-of-type .av:after{animation-duration:1.3s;border:2px solid transparent;border-top-color:#ff3b4a;border-bottom-color:#ff3b4a}
+.busy #msgs .msg:last-of-type .av:after{animation-duration:1.3s;border:2px solid transparent;border-top-color:var(--ac2);border-bottom-color:var(--ac2)}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* LITE / performance mode */
 .lite *,.lite *:before,.lite *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important;will-change:auto!important;text-shadow:none!important}
@@ -151,6 +158,10 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;
 .lite .orb,.lite .av,.lite .send,.lite .newc,.lite .box,.lite .box2,.lite .card,.lite .dn,.lite .pop{box-shadow:none!important}
 .lite .av:after,.lite .brand .orb:after{display:none!important}
 .lite .modal{background:rgba(0,0,0,.78)}
+.lite body:before{display:none}.lite *{box-shadow:none!important}.lite .modal{backdrop-filter:none}
+body:before{filter:hue-rotate(var(--hue,0deg))}html,body{touch-action:manipulation;-webkit-text-size-adjust:100%}#msgs .txt,#msgs .bub{font-size:calc(15px*var(--z,1))}@media(max-width:700px){input,textarea,select{font-size:16px}}
+.upd{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9999;display:none;align-items:center;gap:10px;background:var(--p2);border:1px solid var(--ac);border-radius:14px;padding:10px 12px;font-size:14px}.upd.show{display:flex}.upd span{flex:1}.upd button{background:var(--ac);color:#fff;border-radius:10px;padding:8px 14px}.upd .x{background:none;color:var(--mu);padding:8px}
+.swatch{display:flex;gap:12px;flex-wrap:wrap;padding:4px 0}.swatch button{width:34px;height:34px;border-radius:50%;border:3px solid transparent}.swatch button.on{border-color:var(--tx)}
 .lite .dots i{animation-name:b!important;animation-duration:1.2s!important;animation-iteration-count:infinite!important}
 @media(prefers-reduced-motion:reduce){.hero,#hero{will-change:auto}}
 #appr{display:block}#appr small{display:block;margin-top:4px;color:var(--mu)}
@@ -199,6 +210,7 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;
 <div class="cw"><div id="pv"></div><div id="tb" style="display:none"><div class="eff" id="eff"><button type="button" data-e="low">⚡ Low</button><button type="button" data-e="medium">Medium</button><button type="button" data-e="high">High</button><button type="button" data-e="extreme">🔥 Extreme</button></div><select id="mode2" aria-label="Mode"><option value="general">General</option><option value="coder">Coder</option><option value="teacher">Teacher</option><option value="writer">Writer</option><option value="business">Business</option><option value="tutor">Coding Teacher</option><option value="debug">Debugger</option><option value="reviewer">Code Reviewer</option><option value="architect">Architect</option><option value="linguist">Language Teacher</option><option value="translator">Translator</option></select></div><form class="box2" id="f"><textarea id="p" dir="auto" rows="1" placeholder="Lexi ko likho ya mic dabao…"></textarea><input type="file" id="file" accept="image/*,application/pdf,.txt,.md,.csv,.json,.html,.css,.js,.py,.xml,.log" hidden><div class="bar"><button type="button" class="rb" id="plus" aria-label="Menu">＋</button><button type="button" class="pill" id="pill"><span id="pt">Medium</span> ▾</button><span class="sp"></span><button type="button" class="rb" id="mic" aria-label="Voice">🎙</button><button class="send" id="send" aria-label="Send">↑</button></div></form><div class="note">Lexi AI</div></div><div class="pop" id="popMore"></div><div class="pop" id="popPlus"></div><div class="pop" id="popPill"></div><button class="dn" id="dn" aria-label="Neeche">↓</button>
 </section>
 </div>
+<div class="upd" id="upd"><span>Lexi ka naya version aa gaya hai.</span><button type="button" id="updgo">Update karo</button><button type="button" class="x" id="updx">✕</button></div>
 <div class="modal" id="modal"><div class="mc">
 <h3>Lexi Setup</h3><small>Lexi bina key ke Puter ke free AI se chalti hai (pehli dafa Puter ka login popup aata hai). Apni key (Groq ya Claude) ho to neeche paste karo.</small>
 <label for="key">API key (sirf ek baar)</label><input class="fld" id="key" type="password" autocomplete="off" placeholder="Yahan key paste karo (gsk_… ya sk-ant-…)">
@@ -210,7 +222,14 @@ header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;
 <label class="chk"><input type="checkbox" id="rem" checked> Is device par key yaad rakho</label><small>Key sirf tumhare browser se seedha provider ko jati hai.</small>
 </details>
 <div id="appr"><label for="thm">Theme (Night / Light)</label><select class="fld" id="thm"><option value="dark">🌙 Night mode</option><option value="light">☀ Light mode</option></select>
-<label for="perf">Performance</label><select class="fld" id="perf"><option value="low">Low-end: animations band, kam RAM</option><option value="high">High-end: sab animations on</option></select></div>
+<label for="perf">Performance</label><select class="fld" id="perf"><option value="low">Low-end: animations band, kam RAM</option><option value="high">High-end: sab animations on</option></select>
+<label for="fsz">Text ka size</label><select class="fld" id="fsz"><option value="0.9">Chhota</option><option value="1">Normal</option><option value="1.15">Bara</option><option value="1.3">Bohat bara</option></select>
+<label for="net">Internet access (links aur search)</label><select class="fld" id="net"><option value="1">On: links padho, zaroorat par search karo</option><option value="0">Off</option></select>
+<label>Accent color</label><div class="swatch" id="acc"></div>
+<label>Backup</label>
+<div class="row"><button class="btn" type="button" id="bkp">⤓ Chats backup</button><button class="btn" type="button" id="rst">⤒ Chats restore</button></div><input type="file" id="rstf" accept="application/json,.json" hidden>
+<small>Backup mein chats aur settings hoti hain, API key nahi.</small>
+<button class="btn" type="button" id="inst">📲 Home screen par add karo</button></div>
 <details><summary>Zyada options: mode, mere baare mein, lambai</summary><label for="lang">Lexi ki zabaan aur mic ki zabaan</label><select class="fld" id="lang"><option value="auto">Auto (jo zabaan tum likho)</option><option value="roman">Roman Urdu</option><option value="ur">اردو</option><option value="en">English</option><option value="ar">العربية</option><option value="hi">हिन्दी</option><option value="fa">فارسی</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="zh">中文</option></select><label for="voice">Lexi ki awaz (accent)</label><select class="fld" id="voice"></select><button class="btn" type="button" id="vtest">🔊 Awaz test karo</button>
 <label for="mode">Lexi ka mode</label><select class="fld" id="mode"><option value="general">General (sab kuch)</option><option value="coder">Coder</option><option value="teacher">Teacher</option><option value="writer">Writer</option><option value="business">Freelancing / Business</option><option value="tutor">Coding Teacher</option><option value="debug">Debugger</option><option value="reviewer">Code Reviewer</option><option value="architect">Architect</option><option value="linguist">Language Teacher</option><option value="translator">Translator</option></select>
 <label for="me">Mere baare mein (Lexi har chat mein yaad rakhegi)</label><textarea class="fld" id="me" rows="7" placeholder="Apna kaam, skills, projects, goals aur Lexi se kaise baat karni hai — yahan likho."></textarea>
@@ -238,7 +257,7 @@ const FILES='FILES, PDF AND VIDEO: You can create real downloadable files throug
 const EF={low:{lv:'low',n:20,p:'EFFORT: LOW. Answer immediately and concisely, no long preamble.'},medium:{lv:'medium',n:40,p:'EFFORT: MEDIUM. Balanced: clear and complete but compact.'},high:{lv:'high',n:80,p:'EFFORT: HIGH. Think carefully, cover edge cases, and give a thorough, well-structured answer.'},extreme:{lv:'high',n:200,p:'EFFORT: EXTREME. Reason deeply step by step, consider alternatives, verify the answer before finalizing, and give an exhaustive expert-level response with examples.'}};
 const eff=()=>EF[L.get('ja_eff')||'medium']||EF.medium;
 const TPL='Naam: \nKaam / profession: \nSkills aur tools (jaise Acode, HTML, JS): \nChal rahe projects: \nMere goals: \nLexi kaise baat kare (style): \nZaroori baatein (budget, device, limits): ';
-const sys=()=>BASE+' '+MULTI+LANGLINE()+' '+LIFE+' '+FILES+' '+eff().p+' '+(MODES[L.get('ja_mode')||'general']||'')+(isCode()?' '+COACH:'')+(L.get('ja_me')?' About the user (use when relevant): '+L.get('ja_me'):'');
+const sys=()=>BASE+' '+MULTI+LANGLINE()+' '+LIFE+' '+FILES+' '+NETP()+' '+eff().p+' '+(MODES[L.get('ja_mode')||'general']||'')+(isCode()?' '+COACH:'')+(L.get('ja_me')?' About the user (use when relevant): '+L.get('ja_me'):'');
 const mk=g=>({get:k=>{try{return g().getItem(k)}catch(e){return null}},set:k=>0,put:(k,v)=>{try{g().setItem(k,v);return 1}catch(e){return 0}},del:k=>{try{g().removeItem(k)}catch(e){}}});
 const L=mk(()=>localStorage),Ss=mk(()=>sessionStorage);
 const S={chats:[],id:null,busy:false,ac:null};
@@ -295,7 +314,7 @@ function render(keep){const c=cur(),b=$('msgs'),sc0=$('scroll'),pos=sc0.scrollTo
 if(c)c.msgs.forEach((m,i)=>b.appendChild(row(m,i===c.msgs.length-1,i)));const s=$('scroll');s.scrollTop=(keep&&!near)?pos:s.scrollHeight;shrink();chip()}
 function chip(){pillUI();hudStatus();const c=$('chip'),k=!!key();c.className='chip'+(k?'':' off');c.textContent=k?(model()||'Puter AI')+' · '+(L.get('ja_eff')||'medium'):'Key add karo'}
 const stick=()=>{const s=$('scroll');if(s.scrollHeight-s.scrollTop-s.clientHeight<170)s.scrollTop=s.scrollHeight};
-function fp(x,A){const im=x.img;if(!im)return A?[{type:'text',text:x.text}]:x.text;
+function fp(x,A){if(x.web)x=Object.assign({},x,{text:x.web+'\n\nUSER QUESTION:\n'+x.text});const im=x.img;if(!im)return A?[{type:'text',text:x.text}]:x.text;
 if(im.text!=null){const t='[File: '+im.name+']\n'+im.text+'\n\n'+x.text;return A?[{type:'text',text:t}]:t}
 if(A)return [{type:im.mime==='application/pdf'?'document':'image',source:{type:'base64',media_type:im.mime,data:im.data}},{type:'text',text:x.text}];
 if(im.mime==='application/pdf')throw Error('PDF sirf Claude provider mein chalti hai. Settings mein Claude chuno, ya text/image bhejo.');
@@ -303,14 +322,14 @@ return [{type:'text',text:x.text},{type:'image_url',image_url:{url:'data:'+im.mi
 async function streamPuter(c,m,tick){if(!window.puter)throw Error('Puter load nahi hua. Internet check karo aur page refresh karo.');
 let sp=null;try{if(puter.auth&&typeof puter.auth.isSignedIn==='function'&&!puter.auth.isSignedIn())sp=puter.auth.signIn()}catch(e){}
 let h=c.msgs.filter(x=>x!==m&&x.text).slice(-eff().n);while(h.length&&h[0].role!=='user')h.shift();const last=h[h.length-1],opt={stream:true},md0=model();if(md0)opt.model=md0;
-const msgs=[{role:'system',content:sys()},...h.map(x=>({role:x.role==='user'?'user':'assistant',content:x.img&&x.img.text!=null?'[File: '+x.img.name+']\n'+x.img.text+'\n\n'+x.text:x.text}))];S.ac=new AbortController();let resp;
+const msgs=[{role:'system',content:sys()},...h.map(x=>({role:x.role==='user'?'user':'assistant',content:x.img&&x.img.text!=null?'[File: '+x.img.name+']\n'+x.img.text+'\n\n'+x.text:(x.web?x.web+'\n\nUSER QUESTION:\n':'')+x.text}))];S.ac=new AbortController();let resp;
 try{if(sp)await sp;if(last&&last.img&&last.img.data){if(last.img.mime==='application/pdf')throw Error('PDF is mode mein nahi chalti. Image ya text file bhejo.');resp=await puter.ai.chat(last.text,'data:'+last.img.mime+';base64,'+last.img.data,opt)}else resp=await puter.ai.chat(msgs,opt);
 if(resp&&typeof resp[Symbol.asyncIterator]==='function'){for await(const p of resp){if(S.ac.signal.aborted)break;const t=p&&p.text||'';if(t){m.text+=t;tick()}}}
 else{const mc=resp&&resp.message&&resp.message.content;m.text=(typeof mc==='string'?mc:Array.isArray(mc)?mc.map(x=>x.text||'').join(''):'')||(resp&&resp.text)||'';tick()}}
 catch(e){if(S.ac.signal.aborted)return;const msg=(e&&(e.message||(e.error&&e.error.message)||e.msg))||(typeof e==='string'?e:'');throw Error(/cancel|clos|auth|sign/i.test(msg)||!msg?'Puter login zaroori hai. Popup mein Sign in karo aur dobara bhejo.':msg)}
 if(!m.text&&!S.ac.signal.aborted)throw Error('Jawab nahi aaya. Dobara try karo.')}
 function errMsg(st,m){if(st===429)return /free limit/i.test(m||'')?m+' Ya Settings (⚙) mein Provider "Puter (free)" chuno, wahan koi limit Lexi ki taraf se nahi.':'Rate limit ya quota lag gayi. Thori der baad try karo.';if(st===500||st===503||st===529)return 'Provider par abhi load zyada hai ('+st+'). Thori der baad dobara try karo.';
-if(st===401||st===403)return 'API key ya permission ka masla: '+m;if(st===402)return 'Credit/balance ka masla: '+m;if(st===400||st===404)return 'Model ya request ka masla: '+m+' — Settings mein "Models load karo" daba kar sahi model chuno.';return m||'API request fail hui.'}
+if(st===401||st===403)return 'API key ya permission ka masla: '+m;if(st===402)return 'Credit/balance ka masla: '+m;if(st===400||st===404)return 'Model ya request mein masla aaya ('+m+'). Lexi ne khud theek karne ki koshish ki. Agar phir bhi na chale to Settings mein "Models load karo" daba kar sahi model chuno.';return m||'API request fail hui.'}
 async function stream(c,m,tick){if(PROV()==='puter')return streamPuter(c,m,tick);const A=PROV()==='claude',k=key();if(!k){openSet();throw Error('Pehle Settings mein API key add karo.')}
 let h=c.msgs.filter(x=>x!==m&&x.text).slice(-eff().n);while(h.length&&h[0].role!=='user')h.shift();
 const hist=h.map(x=>({role:x.role==='user'?'user':'assistant',content:fp(x,A)}));
@@ -326,7 +345,7 @@ clearTimeout(tm);if(res.status===429&&rl<3){rl++;const d=await res.clone().json(
 if(w<=60&&!/free limit/i.test(JSON.stringify(d))){toast('Limit lagi hai, '+w+' second mein khud dobara try karti hoon…');await new Promise(r=>setTimeout(r,w*1000+300));if(S.ac.signal.aborted)throw Object.assign(Error('stop'),{name:'AbortError'});continue}
 if(!A&&base()!==SRV()){const ids=await chatModels(k),nx=ids.find(x=>x!==model());if(nx){L.put('ja_model_openai',nx);toast('Limit lagi — model badal kar '+nx+' kar diya');chip();continue}}}
 if(res.status===400&&th){const d=await res.clone().json().catch(()=>({}));if(/thinking|budget/i.test(JSON.stringify(d))){th=false;continue}}
-if((res.status===400||res.status===404)&&!A&&!fixed&&base()!==SRV()){const d=await res.clone().json().catch(()=>({}));if(/model/i.test(JSON.stringify(d))){const ids=await chatModels(k);if(ids.length&&!ids.includes(model())){fixed=true;L.put('ja_model_openai',ids[0]);toast('Model badal kar '+ids[0]+' kar diya');chip();continue}}}
+if((res.status===400||res.status===404)&&!A&&!fixed&&base()!==SRV()){const d=await res.clone().json().catch(()=>({}));if(/model/i.test(JSON.stringify(d))){const ids=await chatModels(k),FB=['llama-3.3-70b-versatile','llama-3.1-8b-instant','openai/gpt-oss-20b'],nx=(ids.length?ids:FB).find(x=>x!==model());if(nx&&(!ids.length||!ids.includes(model()))){fixed=true;L.put('ja_model_openai',nx);toast('Model badal kar '+nx+' kar diya');chip();continue}}}
 if(res.status===400&&A&&mtk>8192){const d=await res.clone().json().catch(()=>({}));if(/max_tokens|max tokens/i.test(JSON.stringify(d))){mtk=8192;continue}}
 if((res.status===400||res.status===413)&&hist.length>2){const d=await res.clone().json().catch(()=>({}));if(/context|too large|too long|reduce|maximum.*tokens|tokens per minute/i.test(JSON.stringify(d))){hist.splice(0,Math.ceil(hist.length/2));while(hist.length&&hist[0].role!=='user')hist.shift();toast('Chat bohat lambi thi, purani baatein kam karke dobara bhej rahi hoon');continue}}
 if(!(res.status===503||res.status===529)||a>3)break;await new Promise(r=>setTimeout(r,1500))}
@@ -345,6 +364,7 @@ if(!m.text)throw Error('Jawab nahi aaya (khali response). Sawal thora badal ke t
 if(fr==='max_tokens'||fr==='length'){m.text+='\n\n_…jawab token limit par ruk gaya. Settings mein lambai barha sakte ho._';tick()}}
 function ui(){const b=$('send');b.textContent=S.busy?'■':'↑';b.classList.toggle('stop',S.busy);document.body.classList.toggle('busy',!!S.busy)}
 async function run(c){const m={role:'model',text:''};c.msgs.push(m);c.t=Date.now();S.busy=true;ui();render();const r=$('msgs').lastElementChild;
+try{await webPrep(c,m,r)}catch(e){m.text=''}
 try{let q=0;await stream(c,m,()=>{if(!q)q=requestAnimationFrame(()=>{q=0;const sc=$('scroll'),nr=sc.scrollHeight-sc.scrollTop-sc.clientHeight<120;fill(r,m,true);if(nr)sc.scrollTop=sc.scrollHeight})})}catch(e){if(e.name!=='AbortError')m.err=e.message}
 S.busy=false;S.ac=null;if(!m.text&&!m.err)c.msgs.pop();save();ui();render(true)}
 function regen(){const c=cur();if(!c||S.busy)return;if(c.msgs.length&&c.msgs[c.msgs.length-1].role==='model')c.msgs.pop();run(c)}
@@ -393,6 +413,7 @@ $('vtest').onclick=()=>{L.put('ja_voice',$('voice').value);const x={ur:'سلام
 $('mic').onclick=()=>{const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return toast('Voice input ke liye Chrome use karo.');const r=new R();r.lang=LCODE[L.get('ja_lang')]||'ur-PK';$('mic').textContent='🔴';r.onresult=e=>{$('p').value=($('p').value+' '+e.results[0][0].transcript).trim();fit();$('p').focus()};r.onerror=()=>toast('Voice fail hua. Mic permission check karo.');r.onend=()=>$('mic').textContent='🎙';r.start()};
 let pend=null;
 $('file').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const bin=f.type.startsWith('image/')||f.type==='application/pdf';if(f.size>(bin?2e7:2e6))return toast(bin?'File 20MB se choti honi chahiye.':'Text file 2MB se choti honi chahiye.');const r=new FileReader();
+if(f.type==='application/pdf'&&PROV()!=='claude'){toast('PDF padh rahi hoon…');f.arrayBuffer().then(pdfText).then(tx=>{if(!tx||tx.replace(/\[Page \d+\]|\s/g,'').length<20)return toast('Is PDF mein text nahi mila (shayad scanned hai). Image bhejo ya Claude provider use karo.');const cut=tx.length>30000;pend={mime:'text/plain',text:tx.slice(0,30000)+(cut?'\n[PDF lambi thi, shuru ka hissa liya]':''),name:f.name};pv();toast(cut?'PDF ka shuru ka hissa padh liya ✓':'PDF padh li ✓')}).catch(e=>toast('PDF nahi padh saki: '+(e.message||'error')));return}
 r.onload=()=>{pend=bin?{mime:f.type,data:r.result.split(',')[1],name:f.name}:{mime:'text/plain',text:r.result,name:f.name};pv()};bin?r.readAsDataURL(f):r.readAsText(f)};
 function pv(){const p=$('pv');p.replaceChildren();if(!pend)return;const w=document.createElement('div');w.className='pvi';w.append(thumb(pend));const b=document.createElement('button');b.type='button';b.textContent='✕';b.onclick=()=>{pend=null;pv()};w.append(b);p.append(w)}
 $('key').oninput=()=>{const d=detect($('key').value);if(!d)return;$('prov').value=d.p;$('bw').hidden=d.p!=='openai';if(d.b)$('base').value=d.b;$('model').value=L.get('ja_model_'+d.p)||d.m;$('kinfo').textContent=d.n==='Lexi Server'?'✓ Access code mil gaya. Ab Save dabao.':'✓ '+d.n+' ki key pehchan li. Ab Save dabao.'};
@@ -545,6 +566,46 @@ theme(L.get('ja_theme')||'dark');
 try{S.chats=JSON.parse(L.get('ja_chats')||'[]')}catch(e){S.chats=[]}
 S.chats=S.chats.filter(c=>c&&Array.isArray(c.msgs)).map(c=>(c.msgs=c.msgs.filter(m=>m.text||m.err),c)).filter(c=>c.msgs.length);
 S.chats.sort((a,b)=>b.t-a.t);S.id=null;newChat();side();try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}if(!key())setTimeout(openSet,400);
+/* ===== EXTRAS: accent, font, update, install, lock, backup ===== */
+const CL={red:'#ff1f2d',blue:'#2d7bff',green:'#1ec86e',purple:'#9650ff',orange:'#ff8c1e',pink:'#ff4696'};
+function accUI(){const w=$('acc'),cur=L.get('ja_acc')||'red';w.replaceChildren();Object.keys(CL).forEach(n=>{const b=document.createElement('button');b.type='button';b.style.background=CL[n];b.setAttribute('aria-label',n);if(n===cur)b.className='on';b.onclick=()=>{L.put('ja_acc',n);window.setAcc(n);accUI()};w.append(b)})}
+accUI();
+function fsz(v){if(v)L.put('ja_fs',v);const z=L.get('ja_fs')||'1';document.documentElement.style.setProperty('--z',z);$('fsz').value=z}
+$('fsz').onchange=()=>fsz($('fsz').value);fsz();
+$('updgo').onclick=()=>location.reload();$('updx').onclick=()=>$('upd').classList.remove('show');
+function instUI(){const b=$('inst'),st=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone;b.textContent=st?'✓ App install hai':'📲 Home screen par add karo';b.disabled=!!st}
+window.onDP=instUI;$('inst').onclick=async()=>{const e=window._dp;if(e){e.prompt();try{await e.userChoice}catch(x){}window._dp=null;return}toast('Browser menu (⋮) mein "Install app" ya "Add to Home screen" chuno')};instUI();
+$('bkp').onclick=()=>{const d={};try{Object.keys(localStorage).filter(k=>k.indexOf('ja_')===0&&!/_key_|_server$/.test(k)).forEach(k=>d[k]=localStorage.getItem(k))}catch(e){}
+const b=new Blob([JSON.stringify({app:'lexi',id:'ja',v:1,t:Date.now(),data:d})],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='lexi-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);toast('Backup file ban gayi')};
+$('rst').onclick=()=>$('rstf').click();
+$('rstf').onchange=async()=>{const f=$('rstf').files[0];$('rstf').value='';if(!f)return;try{const j=JSON.parse(await f.text());if(!j||j.app!=='lexi'||!j.data)throw 0;const d=j.data;let cur=[];try{cur=JSON.parse(L.get('ja_chats')||'[]')}catch(e){}
+for(const k of Object.keys(d)){if(k.indexOf('ja_')!==0||/_key_|_server$/.test(k))continue;if(k==='ja_chats'){let inc=[];try{inc=JSON.parse(d[k])}catch(e){}const m=new Map();cur.concat(inc).forEach(c=>{if(c&&c.id){const o=m.get(c.id);if(!o||(c.t||0)>(o.t||0))m.set(c.id,c)}});L.put(k,JSON.stringify(Array.from(m.values()).sort((a,b)=>(b.t||0)-(a.t||0))))}else L.put(k,String(d[k]))}
+toast('Restore ho gaya, app reload ho rahi hai…');setTimeout(()=>location.reload(),900)}catch(e){toast('Ye Lexi ki backup file nahi lagti')}};
+/* ===== NET ACCESS: links + web search + PDF ===== */
+function netOn(){return L.get('ja_net')!=='0'}
+function NETP(){return netOn()?'INTERNET AND FILES: This app can fetch live web pages, search results and PDF text for you. When a user message begins with WEB CONTENT, that text was just fetched from the internet (links the user sent or search results); read it and answer from it, mention the source link when useful, and be honest if it does not contain the answer. When a file block like [File: name.pdf] is present, it is the extracted text of the PDF the user attached. Never say you cannot open links, browse the web or read PDFs; if no content was attached (the fetch failed), say the link or PDF could not be read this time and ask the user to paste the text or try again.':'INTERNET: Internet access is switched off in Settings, so you cannot open links or search the web. If the user sends a link, tell them to turn on Internet access in Settings or paste the text.'}
+function tagStrip(h){return h.replace(/<(script|style|noscript)[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ').trim()}
+async function getT(u,ms){const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),ms||20000);try{const r=await fetch(u,{signal:ac.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.text()}finally{clearTimeout(tm)}}
+async function readURL(u){let e1;try{const s=await getT('https://r.jina.ai/'+u,25000);if(s&&s.trim().length>40)return s}catch(e){e1=e}
+try{const h=await getT('https://api.allorigins.win/raw?url='+encodeURIComponent(u),20000),s=tagStrip(h);if(s.length>40)return s}catch(e){}
+throw Error((e1&&e1.message)||'page khul nahi saka')}
+async function searchWeb(q){const s=await getT('https://r.jina.ai/https://duckduckgo.com/html/?q='+encodeURIComponent(q),25000);return s.replace(/https?:\/\/duckduckgo\.com\/l\/\?uddg=([^&)\s]+)[^)\s]*/g,(m,x)=>{try{return decodeURIComponent(x)}catch(e){return m}})}
+async function webPrep(c,m,r){if(!netOn())return;let u=null;for(let i=c.msgs.length-1;i>0;i--)if(c.msgs[i]===m){u=c.msgs[i-1];break}
+if(!u||u.role!=='user'||u.web!=null||u.webTried)return;
+c.msgs.forEach(x=>{if(x!==u&&x.web)delete x.web});
+const t=u.text||'',urls=(t.match(/https?:\/\/[^\s<>"')\]]+/gi)||[]).map(x=>x.replace(/[.,;!?]+$/,'')).filter((x,i,a)=>a.indexOf(x)===i).slice(0,3);
+const doS=!urls.length&&t.length<400&&/(search|dhoond|dhund|google|internet|online|latest|news|khabar|aaj ki|abhi|today|current|price|rate|weather|mausam|score|live|trending|release|2026)/i.test(t);
+if(!urls.length&&!doS)return;u.webTried=1;
+m.text=urls.length?'🌐 Link padh rahi hoon…':'🌐 Internet par dhoond rahi hoon…';fill(r,m,true);
+let out='';
+if(urls.length){for(const x of urls){try{out+='[LINK: '+x+']\n'+(await readURL(x)).slice(0,9000)+'\n\n'}catch(e){out+='[LINK: '+x+'] (padh nahi saki: '+(e.message||'error')+')\n\n'}}}
+else{try{out='[WEB SEARCH RESULTS for "'+t.slice(0,150)+'"]\n'+(await searchWeb(t)).slice(0,7000)}catch(e){out=''}}
+m.text='';if(out)u.web='WEB CONTENT (fetched live from the internet just now):\n'+out.slice(0,16000);fill(r,m,true)}
+function loadPdfJs(){return new Promise((ok,no)=>{if(window.pdfjsLib)return ok(window.pdfjsLib);const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=()=>{try{window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';ok(window.pdfjsLib)}catch(e){no(e)}};s.onerror=()=>no(Error('PDF reader load nahi hua, internet check karo'));document.head.appendChild(s)})}
+async function pdfText(buf){const lib=await loadPdfJs(),doc=await lib.getDocument({data:buf}).promise,n=Math.min(doc.numPages,80);let out='';for(let i=1;i<=n;i++){const pg=await doc.getPage(i),tc=await pg.getTextContent();out+='\n[Page '+i+']\n'+tc.items.map(x=>x.str).join(' ');if(out.length>60000)break}if(doc.numPages>n)out+='\n[baqi '+(doc.numPages-n)+' pages chhor diye]';return out.trim()}
+$('net').value=L.get('ja_net')==='0'?'0':'1';$('net').onchange=()=>L.put('ja_net',$('net').value);
+document.addEventListener('gesturestart',e=>e.preventDefault());
+document.addEventListener('touchmove',e=>{if(e.touches&&e.touches.length>1)e.preventDefault()},{passive:false});
 })();
 </script>
 </body>
