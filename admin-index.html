@@ -2,7 +2,8 @@
 <html lang="en" data-theme="dark">
 <head><script>(function(){var d=document.documentElement,s=null;try{s=localStorage.getItem('ja_perf')}catch(e){}
 window.LITE_AUTO=false;window.LITE=s==='low';d.classList.toggle('lite',window.LITE)})()</script>
-<script>try{var c=localStorage.getItem("ja_admin");if(!c){c=prompt("Lexi Admin code daalo:")||"";if(c)localStorage.setItem("ja_admin",c)}if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}}catch(e){}</script><link rel="manifest" href="admin-manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="admin-icon-192.png"><link rel="apple-touch-icon" href="admin-icon-192.png"><script>(function(){
+<script>window.addEventListener("error",function(e){try{var b=document.createElement("div");b.style.cssText="position:fixed;left:0;right:0;top:0;z-index:99999;background:#b00020;color:#fff;font:12px/1.4 monospace;padding:8px 10px;white-space:pre-wrap";b.textContent="Error: "+(e.message||"")+" ("+String(e.filename||"").split("/").pop()+":"+(e.lineno||"")+")";document.documentElement.appendChild(b)}catch(x){}});</script>
+<script>try{var c=localStorage.getItem("ja_admin");if(c){localStorage.setItem("ja_key_openai",c);localStorage.setItem("ja_prov","openai")}else if(!sessionStorage.getItem("ja_skip")){window.__NEEDADMIN=1}}catch(e){}</script><link rel="manifest" href="admin-manifest.json"><meta name="theme-color" content="#0b0305"><link rel="icon" href="admin-icon-192.png"><link rel="apple-touch-icon" href="admin-icon-192.png"><script>(function(){
 var d=document.documentElement,K="app_ver:"+location.pathname,busy=false;
 try{var F=localStorage.getItem('ja_fs');if(F)d.style.setProperty('--z',F)}catch(e){}
 var ACC={red:['255,31,45','#ff1f2d','#ff3b4a','linear-gradient(135deg,#a80018,#e0102a 50%,#ff3b3b)','#2a0508','#ffdede',0],blue:['45,123,255','#2d7bff','#4aa3ff','linear-gradient(135deg,#0a3fa8,#1f6fe0 50%,#4aa3ff)','#06172e','#dbe9ff',-140],green:['30,200,110','#1ec86e','#3be08a','linear-gradient(135deg,#0a7a40,#16b05f 50%,#3be08a)','#05210f','#d9f7e5',-212],purple:['150,80,255','#9650ff','#b07dff','linear-gradient(135deg,#5a1fb8,#8a4af0 50%,#b07dff)','#160a2e','#ebe0ff',-82],orange:['255,140,30','#ff8c1e','#ffa84d','linear-gradient(135deg,#b84d00,#f07010 50%,#ffa84d)','#2a1405','#ffe8d0',-329],pink:['255,70,150','#ff4696','#ff6fb0','linear-gradient(135deg,#b00d5a,#e02a80 50%,#ff6fb0)','#2a0618','#ffdeee',-27]};
@@ -262,7 +263,7 @@ body:before{filter:hue-rotate(var(--hue,0deg))}html,body{touch-action:pan-x pan-
 </section>
 </div>
 <div id="live" aria-hidden="true">
-<div class="lv-top"><span class="lv-seg" id="lvseg" hidden><button type="button" data-m="voice" class="on">Voice</button><button type="button" data-m="chat">Chat</button></span><span class="lv-st" id="lvst">Lexi taiyar hai</span><span class="lv-r"><a class="ib" id="lvadm" href="https://lexi.ayantariq040.workers.dev/admin" target="_blank" rel="noopener" aria-label="Admin panel" style="display:grid;place-items:center;text-decoration:none">📊</a><button type="button" class="ib" id="lvset" aria-label="Settings">⚙</button><button type="button" class="ib" id="lvx" aria-label="Band karo" hidden>✕</button></span></div>
+<div class="lv-top"><span class="lv-seg" id="lvseg" hidden><button type="button" data-m="voice" class="on">Voice</button><button type="button" data-m="chat">Chat</button></span><span class="lv-st" id="lvst">Lexi taiyar hai</span><span class="lv-r"><button type="button" class="ib" id="lvkey" aria-label="Admin code badlo">🔑</button><a class="ib" id="lvadm" href="https://lexi.ayantariq040.workers.dev/admin" target="_blank" rel="noopener" aria-label="Admin panel" style="display:grid;place-items:center;text-decoration:none">📊</a><button type="button" class="ib" id="lvset" aria-label="Settings">⚙</button><button type="button" class="ib" id="lvx" aria-label="Band karo" hidden>✕</button></span></div>
 <div class="lv-avatar" id="lvav"><canvas id="orb"></canvas></div>
 <div class="lv-nodes" id="lvn"><button type="button" data-n="memory">🧠 Memory</button><button type="button" data-n="skills">📚 Skills</button><button type="button" data-n="char">🎭 Character</button><button type="button" data-n="set">⚙ Setting</button></div>
 <div class="lv-panel" id="lvp"></div>
@@ -896,5 +897,14 @@ applyChatUI();openLive();setTimeout(()=>{try{if(LV.wl)LV.wl.release()}catch(e){}
 
 })();
 </script>
+<script>(function(){
+function show(){var o=document.createElement("div");o.id="admlogin";o.style.cssText="position:fixed;inset:0;z-index:99998;background:radial-gradient(120% 70% at 50% 0%,#3a0610,#0b0305 70%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;font-family:system-ui,sans-serif";
+o.innerHTML='<div style="font-size:42px">\u{1F512}</div><h2 style="margin:0;font-size:24px">Lexi Admin</h2><p style="margin:0;color:#c9a0a6;font-size:14px;text-align:center">Admin code daalo (sirf ek baar)</p><input id="admcode" type="password" autocomplete="off" placeholder="Admin code" style="width:min(320px,100%);padding:14px;border-radius:12px;border:1px solid #6a1a24;background:#1a0a0d;color:#fff;font-size:16px"><button id="admgo" type="button" style="width:min(320px,100%);padding:14px;border:0;border-radius:12px;background:linear-gradient(135deg,#a80018,#ff3b3b);color:#fff;font-size:16px;font-weight:700">Enter</button><button id="admskip" type="button" style="background:none;border:0;color:#c9a0a6;font-size:13px;text-decoration:underline">Abhi skip karo (public mode)</button>';
+document.body.appendChild(o);var i=document.getElementById("admcode");setTimeout(function(){try{i.focus()}catch(e){}},300);
+function go(){var v=(i.value||"").trim();if(!v){i.style.borderColor="#ff3b3b";return}try{localStorage.setItem("ja_admin",v);localStorage.setItem("ja_key_openai",v);localStorage.setItem("ja_prov","openai")}catch(e){}location.reload()}
+document.getElementById("admgo").onclick=go;i.addEventListener("keydown",function(e){if(e.key==="Enter")go()});
+document.getElementById("admskip").onclick=function(){try{sessionStorage.setItem("ja_skip","1")}catch(e){}o.remove()}}
+function init(){var k=document.getElementById("lvkey");if(k)k.onclick=function(){try{localStorage.removeItem("ja_admin");localStorage.removeItem("ja_key_openai");sessionStorage.removeItem("ja_skip")}catch(e){}location.reload()};if(window.__NEEDADMIN)show()}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init()})();</script>
 </body>
 </html>
