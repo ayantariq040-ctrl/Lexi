@@ -12,7 +12,7 @@ try{var F=localStorage.getItem('ja_fs');if(F)d.style.setProperty('--z',F)}catch(
 var ACC={red:['255,31,45','#ff1f2d','#ff3b4a','linear-gradient(135deg,#a80018,#e0102a 50%,#ff3b3b)','#2a0508','#ffdede',0],blue:['45,123,255','#2d7bff','#4aa3ff','linear-gradient(135deg,#0a3fa8,#1f6fe0 50%,#4aa3ff)','#06172e','#dbe9ff',-140],green:['30,200,110','#1ec86e','#3be08a','linear-gradient(135deg,#0a7a40,#16b05f 50%,#3be08a)','#05210f','#d9f7e5',-212],purple:['150,80,255','#9650ff','#b07dff','linear-gradient(135deg,#5a1fb8,#8a4af0 50%,#b07dff)','#160a2e','#ebe0ff',-82],orange:['255,140,30','#ff8c1e','#ffa84d','linear-gradient(135deg,#b84d00,#f07010 50%,#ffa84d)','#2a1405','#ffe8d0',-329],pink:['255,70,150','#ff4696','#ff6fb0','linear-gradient(135deg,#b00d5a,#e02a80 50%,#ff6fb0)','#2a0618','#ffdeee',-27]};
 window.setAcc=function(n){var a=ACC[n]||ACC.red,s=document.getElementById('accst');if(!s){s=document.createElement('style');s.id='accst';document.head.appendChild(s)}
 s.textContent='html:root{--acrgb:'+a[0]+';--ac:'+a[1]+';--ac2:'+a[2]+';--grad:'+a[3]+';--hue:'+a[6]+'deg}html:root[data-theme=dark]{--line:rgba('+a[0]+',.2);--user:'+a[4]+'}html:root[data-theme=light]{--line:rgba('+a[0]+',.25);--user:'+a[5]+'}'};
-try{window.setAcc(localStorage.getItem('ja_acc')||'red')}catch(e){}
+try{window.setAcc(localStorage.getItem('ja_acc')||'pink')}catch(e){}
 addEventListener('beforeinstallprompt',function(e){e.preventDefault();window._dp=e;window.onDP&&window.onDP()});
 if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("admin-sw.js",{updateViaCache:"none"}).then(function(r){r.update()}).catch(function(){})});
 function h(s){var x=5381,i=s.length;while(i)x=(x*33)^s.charCodeAt(--i);return String(x>>>0)}
@@ -243,6 +243,26 @@ body:before{filter:hue-rotate(var(--hue,0deg))}html,body{touch-action:pan-x pan-
 .modcard h3{margin:0;font-size:17px}.modcard p{margin:0;color:var(--mu);font-size:13.5px}.modcard pre{max-height:220px;overflow:auto;background:rgba(0,0,0,.35);border-radius:10px;padding:10px;font-size:12px;white-space:pre-wrap;word-break:break-word}
 .modcard .mw{color:#ffb4b4}.modcard .row{display:flex;gap:8px}.modcard .row>*{flex:1}
 .modrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}.modrow b{flex:1;font-size:13.5px;word-break:break-word}.modrow .btn{padding:6px 10px}
+
+/* ===== LEXI v4: pyara Jarvis-style look (pastel glass, female, cute) ===== */
+html:root[data-theme=dark]{--bg:#0e0818;--glass:rgba(30,14,48,.74);--p2:rgba(42,24,66,.8);--tx:#fcefff;--mu:#c8aad6;--code:#130b20}
+body:before{background:radial-gradient(60% 45% at 88% -8%,rgba(var(--acrgb),.24),transparent),radial-gradient(50% 42% at 0 100%,rgba(167,139,250,.2),transparent),radial-gradient(38% 30% at 50% 55%,rgba(127,220,255,.07),transparent)!important}
+aside,.pop,.modcard,.lv-panel,.card,.box2{border-radius:22px}
+.lv-panel{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:linear-gradient(160deg,rgba(255,143,198,.09),rgba(167,139,250,.09)),var(--p2)}
+.bub{border-radius:20px 20px 6px 20px;background:linear-gradient(135deg,rgba(255,143,198,.24),rgba(167,139,250,.22))}
+.av,.newc,.send,.lv-nodes button.on{background:linear-gradient(135deg,#ff8fc6,#a78bfa)!important}
+h1,.sys{letter-spacing:.04em}
+.lv-nodes button{border-color:rgba(255,190,225,.35)!important;background:linear-gradient(160deg,rgba(255,143,198,.12),rgba(167,139,250,.1))}
+.lv-avatar{position:relative}
+.lv-avatar:before{content:"";position:absolute;top:-8px;right:-8px;bottom:-8px;left:-8px;border-radius:34px;background:conic-gradient(from 0deg,#ff8fc6,#a78bfa,#7fdcff,#ff8fc6);filter:blur(18px);opacity:.42;animation:jpulse 4s ease-in-out infinite;z-index:0;pointer-events:none}
+@keyframes jpulse{0%,100%{opacity:.3;transform:scale(.98)}50%{opacity:.55;transform:scale(1.03)}}
+.jclk{text-align:center;font:600 11.5px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;color:var(--mu);text-transform:uppercase;flex:none}
+.jclk b{display:block;font-size:30px;letter-spacing:.08em;color:var(--tx);font-weight:700;text-shadow:0 0 18px rgba(255,143,198,.55)}
+.jqa{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;flex:none}.jqa::-webkit-scrollbar{display:none}
+.jqa button{flex:none;padding:9px 14px;border-radius:999px;font-size:13px;background:linear-gradient(145deg,rgba(255,170,215,.18),rgba(160,140,255,.14));border:1px solid rgba(255,190,225,.32);color:var(--tx);transition:transform .15s}
+.jqa button:active{transform:scale(.94)}
+.jrem{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}.jrem span{flex:1;word-break:break-word}.jrem small{color:var(--mu);display:block}
+.jrem button{padding:6px 10px;border:1px solid var(--line);border-radius:10px;color:var(--tx)}
 </style>
 <script src="https://js.puter.com/v2/"></script>
 </head>
@@ -314,7 +334,7 @@ body:before{filter:hue-rotate(var(--hue,0deg))}html,body{touch-action:pan-x pan-
 <label for="chatui">Chat wala interface (classic)</label><select class="fld" id="chatui"><option value="0">Band: sirf Voice (default)</option><option value="1">Chaalu: Voice ke saath Chat bhi</option></select><small>Chaalu karne par voice screen ke upar Voice | Chat switch aata hai.</small>
 <label for="perf">Performance</label><select class="fld" id="perf"><option value="low">Low-end: animations band, kam RAM</option><option value="high">High-end: sab animations on</option></select>
 <label for="fsz">Text ka size</label><select class="fld" id="fsz"><option value="0.9">Chhota</option><option value="1">Normal</option><option value="1.15">Bara</option><option value="1.3">Bohat bara</option></select>
-<label for="net">Internet access (links aur search)</label><select class="fld" id="net"><option value="1">On: links padho, zaroorat par search karo</option><option value="0">Off</option></select>
+<label for="net">Internet access (links aur search)</label><select class="fld" id="net"><option value="1">On: Lexi khud internet use karegi (search, links, mausam, rates)</option><option value="0">Off</option></select><button class="btn" type="button" id="nettest">🌐 Internet test karo</button><small id="netres"></small>
 <label for="att">File / PDF / link ki limit (kitna text Lexi ko jaye)</label><select class="fld" id="att"><option value="">Auto (server ki limit ke hisaab se)</option><option value="20000">Medium: 20,000 characters</option><option value="40000">Bari: 40,000 characters</option><option value="80000">Bohat bari: 80,000 characters</option></select><small>Zyada limit tab chalti hai jab provider (jaise apni Groq key ya Puter) ki token limit zyada ho. Server par limit 8000 token/minute hai, wahan bari limit lagane par Lexi khud chhota kar ke dobara bhejti hai.</small>
 <label for="vauto">Voice (bolna aur sunna)</label><select class="fld" id="vauto"><option value="0">Jawab khud na bolo</option><option value="1">Jawab khud bolo (auto)</option></select><select class="fld" id="vsend"><option value="0">Mic ke baad khud na bhejo</option><option value="1">Mic ke baad khud bhejo</option></select><select class="fld" id="vrate"><option value="0.8">Awaaz: Aahista</option><option value="1">Awaaz: Normal</option><option value="1.2">Awaaz: Tez</option></select><label for="veng">Awaaz ka engine</label><select class="fld" id="veng"><option value="browser">Phone ki awaaz (free)</option><option value="eleven">ElevenLabs (Nishi awaaz)</option></select><input class="fld" id="elkey" type="password" placeholder="ElevenLabs API key" autocomplete="off"><input class="fld" id="elvid" placeholder="Voice ID" autocomplete="off"><select class="fld" id="elmod"><option value="eleven_multilingual_v2">Multilingual v2 (behtar quality)</option><option value="eleven_flash_v2_5">Flash v2.5 (tez aur sasta)</option><option value="eleven_v3">v3 (sab se expressive)</option></select><button class="btn" type="button" id="eltest">▶ ElevenLabs awaaz test karo</button><button class="btn" type="button" id="eldiag">🔍 Key aur Nishi voice check karo</button><small id="elstat" class="elst" style="display:block;margin-top:6px"></small><small>Voice ID mein Nishi (7wlfJf72PCt9FjPj0Beg) pehle se hai. ElevenLabs ki library ki awaaz API se chalane ke liye usay apne account ki "My Voices" mein add karna padta hai, aur free plan par library voices API se nahi chalti. Key sirf is phone mein save hoti hai.</small>
 <label for="adult">18+ mode (sirf adults ke liye)</label><select class="fld" id="adult"><option value="0">Off</option><option value="1">On: mature baat-cheet (graphic nahi)</option></select><small>On karne ke liye 18 saal ya zyada umar ki tasdeeq chahiye. Tasveerein hamesha non-explicit rehti hain.</small>
@@ -438,7 +458,7 @@ let h=c.msgs.filter(x=>x!==m&&x.text).slice(-eff().n);while(h.length&&h[0].role!
 const bh=()=>h.map(x=>({role:x.role==='user'?'user':'assistant',content:fp(x,A)})),hist=bh(),hasAtt=h.some(x=>(x.img&&x.img.text!=null)||x.web);let sh=0;
 const tok=+(L.get('ja_tok2')||0)||(A?32000:0),tb={high:4000,extreme:10000}[L.get('ja_eff')]||0,temp=+(L.get('ja_temp')||.7);let th=A&&tb>0,mtk=tok;
 const mk=()=>{if(A){const b={model:model(),max_tokens:th?Math.max(mtk,tb+4000):mtk,system:sys(),messages:hist,stream:true};if(th)b.thinking={type:'enabled',budget_tokens:tb};else b.temperature=Math.min(temp,1);if(L.get('ja_web')==='1')b.tools=[{type:'web_search_20250305',name:'web_search',max_uses:3}];return JSON.stringify(b)}
-return JSON.stringify({model:model(),messages:[{role:'system',content:sys()},...hist],stream:true,...(tok?{max_tokens:tok}:{}),temperature:temp})};
+return JSON.stringify({model:model(),messages:[{role:'system',content:sys()},...hist],stream:true,...(tok?{max_tokens:tok}:{}),temperature:temp,...(SRV()&&base()===SRV()&&netOn()?{web:true}:{})})};
 const url=A?'https://api.anthropic.com/v1/messages':base()+'/chat/completions';
 const hd=A?{'Content-Type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{'Content-Type':'application/json',Authorization:'Bearer '+k};let res,to=false,fixed=false,rl=0;
 for(let a=0;a<6;a++){S.ac=new AbortController();const tm=setTimeout(()=>{to=true;S.ac.abort()},180000);
@@ -813,7 +833,7 @@ S.chats=S.chats.filter(c=>c&&Array.isArray(c.msgs)).map(c=>(c.msgs=c.msgs.filter
 S.chats.sort((a,b)=>b.t-a.t);S.id=null;newChat();side();try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}if(!key())setTimeout(openSet,400);
 /* ===== EXTRAS: accent, font, update, install, lock, backup ===== */
 const CL={red:'#ff1f2d',blue:'#2d7bff',green:'#1ec86e',purple:'#9650ff',orange:'#ff8c1e',pink:'#ff4696'};
-function accUI(){const w=$('acc'),cur=L.get('ja_acc')||'red';w.replaceChildren();Object.keys(CL).forEach(n=>{const b=document.createElement('button');b.type='button';b.style.background=CL[n];b.setAttribute('aria-label',n);if(n===cur)b.className='on';b.onclick=()=>{L.put('ja_acc',n);window.setAcc(n);accUI()};w.append(b)})}
+function accUI(){const w=$('acc'),cur=L.get('ja_acc')||'pink';w.replaceChildren();Object.keys(CL).forEach(n=>{const b=document.createElement('button');b.type='button';b.style.background=CL[n];b.setAttribute('aria-label',n);if(n===cur)b.className='on';b.onclick=()=>{L.put('ja_acc',n);window.setAcc(n);accUI()};w.append(b)})}
 accUI();
 function fsz(v){if(v)L.put('ja_fs',v);const z=L.get('ja_fs')||'1';document.documentElement.style.setProperty('--z',z);$('fsz').value=z}
 $('fsz').onchange=()=>fsz($('fsz').value);fsz();
@@ -835,7 +855,7 @@ async function readURL(u){let e1;try{const s=await getT('https://r.jina.ai/'+u,2
 try{const h=await getT('https://api.allorigins.win/raw?url='+encodeURIComponent(u),20000),s=tagStrip(h);if(s.length>40)return s}catch(e){}
 throw Error((e1&&e1.message)||'page khul nahi saka')}
 async function searchWeb(q){const s=await getT('https://r.jina.ai/https://duckduckgo.com/html/?q='+encodeURIComponent(q),25000);return s.replace(/https?:\/\/duckduckgo\.com\/l\/\?uddg=([^&)\s]+)[^)\s]*/g,(m,x)=>{try{return decodeURIComponent(x)}catch(e){return m}})}
-async function webPrep(c,m,r){if(!netOn())return;let u=null;for(let i=c.msgs.length-1;i>0;i--)if(c.msgs[i]===m){u=c.msgs[i-1];break}
+async function webPrep(c,m,r){if(!netOn()||(SRV()&&base()===SRV()))return;let u=null;for(let i=c.msgs.length-1;i>0;i--)if(c.msgs[i]===m){u=c.msgs[i-1];break}
 if(!u||u.role!=='user'||u.web!=null||u.webTried)return;
 c.msgs.forEach(x=>{if(x!==u&&x.web)delete x.web});
 const t=u.text||'',urls=(t.match(/https?:\/\/[^\s<>"')\]]+/gi)||[]).map(x=>x.replace(/[.,;!?]+$/,'')).filter((x,i,a)=>a.indexOf(x)===i).slice(0,3);
@@ -848,7 +868,7 @@ else{try{out='[WEB SEARCH RESULTS for "'+t.slice(0,150)+'"]\n'+(await searchWeb(
 m.text='';if(out)u.web='WEB CONTENT (fetched live from the internet just now):\n'+out.slice(0,16000);fill(r,m,true)}
 function loadPdfJs(){return new Promise((ok,no)=>{if(window.pdfjsLib)return ok(window.pdfjsLib);const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=()=>{try{window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';ok(window.pdfjsLib)}catch(e){no(e)}};s.onerror=()=>no(Error('PDF reader load nahi hua, internet check karo'));document.head.appendChild(s)})}
 async function pdfText(buf){const lib=await loadPdfJs(),doc=await lib.getDocument({data:buf}).promise,n=Math.min(doc.numPages,80);let out='';for(let i=1;i<=n;i++){const pg=await doc.getPage(i),tc=await pg.getTextContent();out+='\n[Page '+i+']\n'+tc.items.map(x=>x.str).join(' ');if(out.length>60000)break}if(doc.numPages>n)out+='\n[baqi '+(doc.numPages-n)+' pages chhor diye]';return out.trim()}
-$('net').value=L.get('ja_net')==='0'?'0':'1';$('net').onchange=()=>L.put('ja_net',$('net').value);
+$('net').value=L.get('ja_net')==='0'?'0':'1';$('net').onchange=()=>L.put('ja_net',$('net').value);$('nettest').onclick=async()=>{const o=$('netres');if(!(SRV()&&base()===SRV())){o.textContent='Ye test Lexi Server par chalta hai. Settings me access code / Lexi Server chuno.';return}o.textContent='Test ho raha hai...';try{const r=await fetch(SRV()+'/web/search?q='+encodeURIComponent('Pakistan news today'),{headers:{Authorization:'Bearer '+key()}}),d=await r.json();o.textContent=r.ok&&d.items&&d.items.length?'\u2705 Internet connected ('+d.src+'): '+d.items.length+' results. Pehla: '+d.items[0].title:'\u274c '+((d.error&&(d.error.message||d.error))||'koi result nahi mila')}catch(e){o.textContent='\u274c Server tak nahi pahunch saka: '+e.message}};
 document.addEventListener('gesturestart',e=>e.preventDefault());
 document.addEventListener('touchmove',e=>{if(e.touches&&e.touches.length>1)e.preventDefault()},{passive:false});
 function isLocal(){try{const h=new URL(base()).hostname;return /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h)||/\.local$/.test(h)}catch(e){return false}}
@@ -1132,6 +1152,39 @@ $('chatui').value=L.get(CK)||'0';$('chatui').onchange=()=>{L.put(CK,$('chatui').
 $('mback').onclick=()=>{if(history.state&&history.state.s){history.back()}else $('modal').classList.remove('show')};
 addEventListener('popstate',()=>{$('modal').classList.remove('show')});
 new MutationObserver(()=>{if(!$('modal').classList.contains('show')&&history.state&&history.state.s){try{history.back()}catch(e){}}}).observe($('modal'),{attributes:true,attributeFilter:['class']});
+/* ===== LEXI v4: JARVIS LAYER (clock, greeting, quick actions, reminders) ===== */
+try{(function(){
+const pad=n=>String(n).padStart(2,'0'),city=()=>L.get('ja_city')||'Karachi';
+const rems=()=>{try{const a=JSON.parse(L.get('ja_rem')||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}},saveR=a=>L.put('ja_rem',JSON.stringify(a.slice(0,50)));
+const fmt=t=>new Date(t).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+const clk=lvEl('div',null,'jclk');clk.innerHTML='<b></b><span></span>';$('lvbody').insertBefore(clk,$('lvav'));
+const tick=()=>{const d=new Date();clk.firstChild.textContent=pad(d.getHours())+':'+pad(d.getMinutes());clk.lastChild.textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})};tick();setInterval(tick,20000);
+const greet=()=>{const h=new Date().getHours();return (h<5?'Raat ko jaag rahe hain aap!':h<12?'Subah bakhair!':h<17?'Dopahar bakhair!':h<21?'Shaam bakhair!':'Shab bakhair!')+' Main Lexi hoon. Aaj main aapki kya madad karun?'};
+setTimeout(()=>{if(!$('lvsay').textContent)$('lvsay').textContent=greet()},700);
+function askNotif(){try{if(window.Notification&&Notification.permission==='default')Notification.requestPermission()}catch(e){}}
+function fire(r){toast('⏰ '+r.txt);try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
+const ttl='Lexi reminder',opt={body:r.txt,icon:'admin-icon-192.png',tag:'lexi-'+r.id};
+try{if(window.Notification&&Notification.permission==='granted'){if(navigator.serviceWorker&&navigator.serviceWorker.ready)navigator.serviceWorker.ready.then(g=>g.showNotification(ttl,opt)).catch(()=>{try{new Notification(ttl,opt)}catch(e){}});else new Notification(ttl,opt)}}catch(e){}
+try{speak('Yaad dihani: '+r.txt)}catch(e){}}
+function due(){const a=rems(),n=Date.now(),go=a.filter(r=>r.t<=n);if(!go.length)return;saveR(a.filter(r=>r.t>n));go.forEach(fire)}
+setInterval(due,15000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)due()});due();
+function addRem(t,txt){const a=rems();a.push({id:Date.now().toString(36),t:t,txt:String(txt||'Reminder').slice(0,200)});a.sort((x,y)=>x.t-y.t);saveR(a);askNotif()}
+function remPanel(){lvNode('hub');const p=$('lvp');p.replaceChildren();p.append(lvEl('h3','⏰ Reminders'),lvEl('p','Likho kya yaad dilana hai aur kab. Ya bolo: "10 minute baad chai yaad dilao".'));
+const t=lvEl('input');t.className='fld';t.placeholder='Kya yaad dilana hai?';const d=lvEl('input');d.type='datetime-local';d.className='fld';const x=new Date(Date.now()+3600000);d.value=x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())+'T'+pad(x.getHours())+':'+pad(x.getMinutes());
+const b=lvEl('button','+ Add karo','btn pri');b.type='button';b.style.marginTop='8px';b.onclick=()=>{const v=t.value.trim(),w=new Date(d.value).getTime();if(!v)return toast('Pehle likho kya yaad dilana hai.');if(!w||w<Date.now()+10000)return toast('Waqt aage ka chuno.');addRem(w,v);toast('Reminder lag gaya');remPanel()};
+p.append(t,d,b);const a=rems();if(!a.length)p.append(lvEl('small','Abhi koi reminder nahi.'));
+a.forEach(r=>{const row=lvEl('div',null,'jrem'),s=lvEl('span',r.txt),sm=lvEl('small',fmt(r.t));s.append(sm);const del=lvEl('button','Hatao');del.type='button';del.onclick=()=>{saveR(rems().filter(y=>y.id!==r.id));remPanel()};row.append(s,del);p.append(row)});
+const nb=lvEl('small','Note: reminder tab ya app khula ho tab hi bajta hai. Band app mein bajane ke liye native Android app (Stage 2) chahiye.');nb.style.display='block';nb.style.marginTop='8px';p.append(nb)}
+const brief=()=>{const a=rems().slice(0,3).map(r=>r.txt+' ('+fmt(r.t)+')').join(', ');return 'Meri subah ki briefing do: '+city()+' ka mausam, Pakistan ki 3 badi khabrein, dollar ka PKR rate, aur mere reminders'+(a?': '+a:' (koi nahi)')+'. Sab chhota aur bolne layak rakho.'};
+const ACT=[['🌅 Briefing',()=>lvSend(brief())],['🌤 Mausam',()=>lvSend('Abhi '+city()+' ka mausam kaisa hai aur kya pehen kar niklun?')],['📰 Khabrein',()=>lvSend('Pakistan ki aaj ki top 3 khabrein batao.')],['💱 Rates',()=>lvSend('Dollar, Saudi riyal aur Bitcoin ka abhi ka rate PKR mein batao.')],['⏰ Reminder',remPanel],['📍 Shehar',()=>{const v=prompt('Aap kis shehar mein hain?',city());if(v&&v.trim()){L.put('ja_city',v.trim().slice(0,40));toast('Shehar: '+v.trim())}}]];
+const qa=lvEl('div',null,'jqa');ACT.forEach(a=>{const b=lvEl('button',a[0]);b.type='button';b.onclick=a[1];qa.append(b)});$('lvn').after(qa);
+function parseRem(v){if(!/yaad\s*dila|remind/i.test(v))return null;let w=0,m;
+if((m=/(\d+)\s*(second|sec|minute|min|mint|ghant|hour|hr|din|day)/i.exec(v))){const u=m[2].toLowerCase(),k=/^sec/.test(u)?1e3:/^(min)/.test(u)?6e4:/^(ghant|hour|hr)/.test(u)?36e5:864e5;w=Date.now()+(+m[1])*k;v=v.replace(m[0],' ')}
+else if((m=/(\d{1,2})(?::(\d{2}))?\s*baje/i.exec(v))){let h=+m[1];const pm=/shaam|raat|dopahar|pm|sham/i.test(v),am=/subah|am\b|fajr/i.test(v);if(pm&&h<12)h+=12;if(am&&h===12)h=0;const d=new Date();d.setHours(h,+(m[2]||0),0,0);if(d.getTime()<=Date.now())d.setDate(d.getDate()+1);w=d.getTime();v=v.replace(m[0],' ')}
+if(!w)return null;const txt=v.replace(/\b(mujhe|mujhay|baad|remind|me|yaad|dilao|dilana|dila|dena|lexi|please|plz|later|in|to|mein|subah|shaam|raat|dopahar)\b/gi,' ').replace(/\s+/g,' ').trim();return{t:w,txt:txt||'Reminder'}}
+document.addEventListener('submit',e=>{if(!e.target||e.target.id!=='f')return;const r=parseRem($('p').value.trim());if(!r)return;e.preventDefault();e.stopImmediatePropagation();$('p').value='';try{fit()}catch(x){}addRem(r.t,r.txt);
+const msg='Theek hai, '+fmt(r.t)+' par yaad diladungi: '+r.txt;toast('Reminder lag gaya');if(window._live){$('lvsay').textContent=msg;LV.speaking=true;const k=++LV.tok;speak(msg,()=>{if(k!==LV.tok)return;LV.speaking=false;lvAgain()})}},true);
+})()}catch(e){try{console.error('Jarvis layer',e)}catch(x){}}
 applyChatUI();openLive();setTimeout(()=>{try{if(LV.wl)LV.wl.release()}catch(e){}LV.wl=null},400);/*@PROTECT:ok*/window.__LEXI_OK=1;/*@/PROTECT*/
 
 })();
